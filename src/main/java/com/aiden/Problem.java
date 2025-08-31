@@ -55,8 +55,6 @@ public class Problem {
                 String varName = entry.getKey();
                 JsonNode values = entry.getValue();
 
-                System.out.println(values);
-
                 ArrayList<Double> domainValues = new ArrayList<>();
                 for (JsonNode node : values) {
                     domainValues.add(node.asDouble());
