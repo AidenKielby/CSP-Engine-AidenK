@@ -1,0 +1,67 @@
+fairnessObjective:
+  objective: "balance"
+
+variables:
+  Worker1_Task1: [1,2,3,4,5]
+  Worker1_Task2: [1,2,3,4,5]
+  Worker1_Task3: [1,2,3,4,5]
+
+  Worker2_Task1: [1,2,3,4,5]
+  Worker2_Task2: [1,2,3,4,5]
+  Worker2_Task3: [1,2,3,4,5]
+
+  Worker3_Task1: [1,2,3,4,5]
+  Worker3_Task2: [1,2,3,4,5]
+  Worker3_Task3: [1,2,3,4,5]
+
+constraints:
+  # Each worker must have exactly 9 total hours
+  - type: sum
+    vars: [ Worker1_Task1, Worker1_Task2, Worker1_Task3 ]
+    comparison: equal
+    value: 9
+    modifier: 0
+
+  - type: sum
+    vars: [ Worker2_Task1, Worker2_Task2, Worker2_Task3 ]
+    comparison: equal
+    value: 9
+    modifier: 0
+
+  - type: sum
+    vars: [ Worker3_Task1, Worker3_Task2, Worker3_Task3 ]
+    comparison: equal
+    value: 9
+    modifier: 0
+
+  # Task totals must match across workers (like columns)
+  - type: sum
+    vars: [ Worker1_Task1, Worker2_Task1, Worker3_Task1 ]
+    comparison: equal
+    value: 9
+    modifier: 0
+
+  - type: sum
+    vars: [ Worker1_Task2, Worker2_Task2, Worker3_Task2 ]
+    comparison: equal
+    value: 9
+    modifier: 0
+
+  - type: sum
+    vars: [ Worker1_Task3, Worker2_Task3, Worker3_Task3 ]
+    comparison: equal
+    value: 9
+    modifier: 0
+
+  # All task assignments must be different
+  - type: not_equal
+    vars: [Worker1_Task1, Worker1_Task2, Worker1_Task3]
+    modifier: 0
+
+  - type: not_equal
+    vars: [Worker2_Task1, Worker2_Task2, Worker2_Task3]
+    modifier: 0
+
+  - type: not_equal
+    vars: [Worker3_Task1, Worker3_Task2, Worker3_Task3]
+    modifier: 0

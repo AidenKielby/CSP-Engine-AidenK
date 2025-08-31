@@ -1,0 +1,33 @@
+# Available constraint types:
+# - equal:         All listed variables must have the same value
+# - not_equal:     All listed variables must have different values
+# - value_in:      Variable must be one of a specific list of values
+# - value_not_in:  Variable must NOT be one of a specific list
+#
+# Arithmetic constraints (use with a comparison type):
+# - sum:           Sum of variables
+# - product:       Product of variables
+# - difference:    Absolute or directional difference
+# - modulo:        Remainder of division
+#
+# Comparison types (used with arithmetic constraints):
+# - equal
+# - greater_than
+# - less_than
+#
+# Modifier ('modifier'): a number added to the constraint output (CAN NOT be negative).
+#
+# Fairness Objective ('fairnessObjective') has two options:
+# - 'balance', minimizing the difference between the variables
+# - 'ignore', ignores the Fairness Objective and acts as a normal CSP
+#
+# Example Variable declaration:
+# variables:
+#   A1: [0, 1, 2, 3]
+#
+# Example constraint:
+# - type: sum
+#   vars: [A, B]
+#   comparison: equal
+#   value: 5
+#   modifier: 0
