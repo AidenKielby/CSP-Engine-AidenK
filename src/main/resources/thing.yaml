@@ -1,0 +1,84 @@
+fairnessObjective:
+  objective: "balance"
+
+variables:
+  # Alice's schedule
+  Alice_Mon: [0,1,2,3]
+  Alice_Tue: [0,1,2,3]
+  Alice_Wed: [0,1,2,3]
+
+  # Bob's schedule
+  Bob_Mon: [0,1,2,3]
+  Bob_Tue: [0,1,2,3]
+  Bob_Wed: [0,1,2,3]
+
+  # Charlie's schedule
+  Charlie_Mon: [0,1,2,3]
+  Charlie_Tue: [0,1,2,3]
+  Charlie_Wed: [0,1,2,3]
+
+constraints:
+  #1. Max 2 shifts per employee (total shift values <= 6)
+  - type: sum
+    vars: [ Alice_Mon, Alice_Tue, Alice_Wed ]
+    comparison: less_than
+    value: 7
+    modifier: 0
+
+  - type: sum
+    vars: [ Bob_Mon, Bob_Tue, Bob_Wed ]
+    comparison: less_than
+    value: 7
+    modifier: 0
+
+  - type: sum
+    vars: [ Charlie_Mon, Charlie_Tue, Charlie_Wed ]
+    comparison: less_than
+    value: 7
+    modifier: 0
+
+  # 2. No same shift two days in a row
+  - type: not_equal
+    vars: [ Alice_Mon, Alice_Tue ]
+    modifier: 0
+  - type: not_equal
+    vars: [ Bob_Mon, Bob_Tue ]
+    modifier: 0
+  - type: not_equal
+    vars: [ Charlie_Mon, Charlie_Tue ]
+    modifier: 0
+
+  # 3. At least one day off per employee
+  - type: value_in
+    vars: [ Alice_Mon, Alice_Tue, Alice_Wed ]
+    values: [0]
+    modifier: 0
+
+  - type: value_in
+    vars: [ Bob_Mon, Bob_Tue, Bob_Wed ]
+    values: [0]
+    modifier: 0
+
+  - type: value_in
+    vars: [ Charlie_Mon, Charlie_Tue, Charlie_Wed ]
+    values: [0]
+    modifier: 0
+
+  #4. No more than 2 people on the same shift per day
+  - type: sum
+    vars: [ Alice_Mon, Bob_Mon, Charlie_Mon ]
+    comparison: less_than
+    value: 7
+    modifier: 0
+
+  - type: sum
+    vars: [ Alice_Tue, Bob_Tue, Charlie_Tue ]
+    comparison: less_than
+    value: 7
+    modifier: 0
+
+  - type: sum
+    vars: [ Alice_Wed, Bob_Wed, Charlie_Wed ]
+    comparison: less_than
+    value: 7
+    modifier: 0
