@@ -1,0 +1,70 @@
+
+fairnessObjective:
+ objective: "ignore"
+
+variables:
+  A1: [1,2,3,4,5,6,7,8,9,10]
+  A2: [1,2,3,4,5,6,7,8,9]
+  A3: [1,2,3,4,5,6,7,8,9]
+  B1: [1,2,3,4,5,6,7,8,9]
+  B2: [1,2,3,4,5,6,7,8,9]
+  B3: [1,2,3,4,5,6,7,8,9]
+  C1: [1,2,3,4,5,6,7,8,9]
+  C2: [1,2,3,4,5,6,7,8,9]
+  C3: [1,2,3,4,5,6,7,8,9]
+
+constraints:
+  # Row constraints
+  - type: sum
+    vars: [ A1, A2, A3 ]
+    comparison: equal
+    value: 15
+    modifier: 0
+
+  - type: sum
+    vars: [ B1, B2, B3 ]
+    comparison: equal
+    value: 15
+    modifier: 0
+
+  - type: sum
+    vars: [ C1, C2, C3 ]
+    comparison: equal
+    value: 15
+    modifier: 0
+
+  # Column constraints
+  - type: sum
+    vars: [ A1, B1, C1 ]
+    comparison: equal
+    value: 15
+    modifier: 0
+
+  - type: sum
+    vars: [ A2, B2, C2 ]
+    comparison: equal
+    value: 15
+    modifier: 0
+
+  - type: sum
+    vars: [ A3, B3, C3 ]
+    comparison: equal
+    value: 15
+    modifier: 0
+
+  # Diagonal constraints
+  - type: sum
+    vars: [ A1, B2, C3 ]
+    comparison: equal
+    value: 15
+    modifier: 0
+
+  - type: sum
+    vars: [ A3, B2, C1 ]
+    comparison: equal
+    value: 15
+    modifier: 0
+
+  - type: not_equal
+    vars: [ A1, A2, A3, B1, B2, B3, C1, C2, C3 ]
+    modifier: 0

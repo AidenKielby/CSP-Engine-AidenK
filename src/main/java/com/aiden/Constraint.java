@@ -46,7 +46,7 @@ public class Constraint {
             return 1 + modifier;
         }
 
-        if (Objects.equals(this.type, "value_in")){
+        if (Objects.equals(this.type, "strict_value_in")){
             for (Variable var : variables) {
                 boolean valIn = false;
                 for (double d : values) {
@@ -61,7 +61,23 @@ public class Constraint {
             return 1 + modifier;
         }
 
-        if (Objects.equals(this.type, "value_not_in")){
+        if (Objects.equals(this.type, "value_in")){
+            boolean valIn = false;
+            for (Variable var : variables) {
+                for (double d : values) {
+                    if (Objects.equals(d, var.getValue())) {
+                        valIn = true;
+                    }
+                }
+            }
+            if (!valIn){
+                return 0 + modifier;
+            }
+
+            return 1 + modifier;
+        }
+
+        if (Objects.equals(this.type, "strict_value_not_in")){
             for (Variable var : variables) {
                 for (double d : values) {
                     if (Objects.equals(d, var.getValue())) {
@@ -70,6 +86,54 @@ public class Constraint {
                 }
             }
             return 1 + modifier;
+        }
+
+        if (Objects.equals(this.type, "value_not_in")) {
+            boolean foundNotIn = false;
+
+            for (Variable var : variables) {
+                boolean thisVarInList = false;
+                for (double d : values) {
+                    if (Objects.equals(d, var.getValue())) {
+                        thisVarInList = true;
+                        break;
+                    }
+                }
+                if (!thisVarInList) {
+                    foundNotIn = true;
+                    break;
+                }
+            }
+
+            if (foundNotIn) {
+                return 1 + modifier;
+            } else {
+                return 0 + modifier;
+            }
+        }
+
+        if (Objects.equals(this.type, "randomizer")) {
+            boolean foundNotIn = false;
+
+            for (Variable var : variables) {
+                boolean thisVarInList = false;
+                for (double d : values) {
+                    if (Objects.equals(d, var.getValue())) {
+                        thisVarInList = true;
+                        break;
+                    }
+                }
+                if (!thisVarInList) {
+                    foundNotIn = true;
+                    break;
+                }
+            }
+
+            if (foundNotIn) {
+                return 1 + modifier;
+            } else {
+                return 0 + modifier;
+            }
         }
 
         return 100000;
