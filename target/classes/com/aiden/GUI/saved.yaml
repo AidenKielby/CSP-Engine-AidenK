@@ -1,0 +1,60 @@
+fairnessObjective:
+  objective: "balance"
+
+variables:
+  Tile0-0: [0,1,2,3,4,5]
+  Tile1-0: [0,1,2,3,4,5]
+  Tile2-0: [0,1,2,3,4,5]
+  Tile3-0: [0,1,2,3,4,5]
+  Tile4-0: [0,1,2,3,4,5]
+  Tile5-0: [0,1,2,3,4,5]
+  Tile0-1: [0,1,2,3,4,5]
+  Tile1-1: [0,1,2,3,4,5]
+  Tile2-1: [0,1,2,3,4,5]
+  Tile3-1: [0,1,2,3,4,5]
+  Tile4-1: [0,1,2,3,4,5]
+  Tile5-1: [0,1,2,3,4,5]
+  Tile0-2: [0,1,2,3,4,5]
+  Tile1-2: [0,1,2,3,4,5]
+  Tile2-2: [0,1,2,3,4,5]
+  Tile3-2: [0,1,2,3,4,5]
+  Tile4-2: [0,1,2,3,4,5]
+  Tile5-2: [0,1,2,3,4,5]
+  Tile0-3: [0,1,2,3,4,5]
+  Tile1-3: [0,1,2,3,4,5]
+  Tile2-3: [0,1,2,3,4,5]
+  Tile3-3: [0,1,2,3,4,5]
+  Tile4-3: [0,1,2,3,4,5]
+  Tile5-3: [0,1,2,3,4,5]
+  Tile0-4: [0,1,2,3,4,5]
+  Tile1-4: [0,1,2,3,4,5]
+  Tile2-4: [0,1,2,3,4,5]
+  Tile3-4: [0,1,2,3,4,5]
+  Tile4-4: [0,1,2,3,4,5]
+  Tile5-4: [0,1,2,3,4,5]
+  Tile0-5: [0,1,2,3,4,5]
+  Tile1-5: [0,1,2,3,4,5]
+  Tile2-5: [0,1,2,3,4,5]
+  Tile3-5: [0,1,2,3,4,5]
+  Tile4-5: [0,1,2,3,4,5]
+  Tile5-5: [0,1,2,3,4,5]
+
+constraints:
+  - type: equal
+    vars: [Tile0-0, Tile0-1, Tile0-2, Tile0-3, Tile0-4, Tile0-5]
+    modifier: 0
+  - type: equal
+    vars: [Tile1-0, Tile1-1, Tile1-2, Tile1-3, Tile1-4, Tile1-5]
+    modifier: 0
+  - type: equal
+    vars: [Tile2-0, Tile2-1, Tile2-2, Tile2-3, Tile2-4, Tile2-5]
+    modifier: 0
+  - type: equal
+    vars: [Tile3-0, Tile3-1, Tile3-2, Tile3-3, Tile3-4, Tile3-5]
+    modifier: 0
+  - type: equal
+    vars: [Tile4-0, Tile4-1, Tile4-2, Tile4-3, Tile4-4, Tile4-5]
+    modifier: 0
+  - type: equal
+    vars: [Tile5-0, Tile5-1, Tile5-2, Tile5-3, Tile5-4, Tile5-5]
+    modifier: 0

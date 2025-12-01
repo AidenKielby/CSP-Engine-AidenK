@@ -1,0 +1,99 @@
+# ================================================
+# Constraint System Documentation
+# ================================================
+
+# Available constraint types:
+# ------------------------------------------------
+# Boolean constraints (compare variable values directly):
+#
+# - equal:
+#     Passes if all listed variables have the same value.
+#
+# - not_equal:
+#     Passes if all listed variables have different values.
+#
+# - value_in:
+#     Passes if at least one listed variable’s value
+#     is included in the provided list of values.
+#
+# - strict_value_in:
+#     Passes only if every listed variable’s value
+#     is included in the provided list of values.
+#
+# - value_not_in:
+#     Passes if at least one listed variable’s value
+#     is *not* included in the provided list of values.
+#     (Soft version — good for partial or flexible constraints)
+#
+# - strict_value_not_in:
+#     Passes only if *all* listed variables’ values
+#     are *not* included in the provided list of values.
+#     (Hard version — fails immediately if any variable matches a forbidden value)
+#
+# ------------------------------------------------
+# Arithmetic constraints (use with a comparison type):
+#
+# - sum:
+#     Sum of all listed variables.
+#
+# - product:
+#     Product of all listed variables.
+#
+# - difference:
+#     Absolute or directional difference between listed variables.
+#
+# - modulo:
+#     Remainder after dividing one variable by another.
+#
+# ------------------------------------------------
+# Comparison types (used with arithmetic constraints):
+#
+# - equal
+# - greater_than
+# - less_than
+#
+# ------------------------------------------------
+# Modifier ('modifier'):
+#
+# - A non-negative number added to the constraint’s output.
+# - Used to soften constraints or fine-tune scoring.
+# - Example:
+#       modifier: 0     → Hard constraint (must be satisfied)
+#       modifier: 0.2   → Soft constraint (adds slight penalty if failed)
+#
+# ------------------------------------------------
+# Fairness Objective ('fairnessObjective'):
+#
+# - 'balance': Minimizes the variance between variable values
+#              while still maximizing the total score.
+#
+# - 'ignore':  Disables fairness adjustments (standard CSP evaluation).
+#
+# ------------------------------------------------
+# Example Variable Declaration:
+#
+# variables:
+#   A1: [0, 1, 2, 3]
+#
+# ------------------------------------------------
+# Example Arithmetic Constraint:
+#
+# constraints:
+#   - type: sum
+#     vars: [A, B]
+#     comparison: equal
+#     value: 5
+#     modifier: 0
+#
+# ------------------------------------------------
+# Example Boolean Constraint:
+#
+# constraints:
+#   - type: strict_value_not_in
+#     vars: [A, B, C]
+#     values: [1, 2, 3]
+#     modifier: 0.5
+#
+#   # Passes only if all variables are NOT 1, 2, or 3
+#   # Adds a small penalty if failed (due to modifier)
+# ================================================
